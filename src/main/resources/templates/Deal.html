@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Deal Form</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<form method="post" action="#" th:action="@{/deal/submit}" th:object="${deal}" th:modelAttribute="deal">
+    <h1>Создайте новую сделку</h1>
+    <img th:src="@{/images/demospring.png}"/>
+    <div class="grid">
+        <div class="label-input">
+            <label for="typeId">Тип сделки:</label>
+            <select id="typeId" name="typeId">
+                <option th:each="dealType : ${allDealTypes}" th:value="${dealType.id}" th:text="${dealType.type}"></option>
+            </select>
+        </div>
+
+<div class="label-input">
+        <label for="ticker">Тикер:</label>
+        <input type="text" id="ticker" th:field="*{ticker}">
+        <span class="validationError" 
+        th:if="${#fields.hasErrors('ticker')}" 
+        th:errors="*{ticker}">Ticker Error</span><br>
+        </div>
+        
+        <div class="label-input">
+        <label for="orderNumber">Номер поручения сделки (6 цифр):</label>
+        <input type="text" id="orderNumber" th:field="*{orderNumber}">
+        <span class="validationError" 
+        th:if="${#fields.hasErrors('orderNumber')}" 
+        th:errors="*{orderNumber}">Order Number Error</span><br>
+        </div>
+        <div class="label-input">
+        <label for="dealNumber">Номер сделки (6 цифр):</label>
+        <input type="text" id="dealNumber" th:field="*{dealNumber}" >
+        <span class="validationError" 
+        th:if="${#fields.hasErrors('dealNumber')}" 
+        th:errors="*{dealNumber}">Deal Number Error</span><br>
+        </div>
+        <div class="label-input">
+        <label for="dealQuantity">Количество ценных бумаг по сделке:</label>
+        <input type="text" id="dealQuantity" th:field="*{dealQuantity}" >
+        <span class="validationError" 
+        th:if="${#fields.hasErrors('dealQuantity')}" 
+        th:errors="*{dealQuantity}">Quantity Error</span><br>
+        </div>
+        <div class="label-input">
+        <label for="dealPrice">Цена по сделке:</label>
+        <input type="text" id="dealPrice" th:field="*{dealPrice}" >
+        <span class="validationError" 
+        th:if="${#fields.hasErrors('dealPrice')}" 
+        th:errors="*{dealPrice}">Price Error</span><br>
+        </div>
+        <div class="label-input">
+        <label for="dealTotalCost">Общая сумма сделки:</label>
+        <input type="text" id="dealTotalCost" th:field="*{dealTotalCost}" >
+        <span class="validationError" 
+        th:if="${#fields.hasErrors('dealTotalCost')}" 
+        th:errors="*{dealTotalCost}">Total Cost Error</span><br>
+        </div>
+        <div class="label-input">
+        <label for="dealTrader">Код трейдера:</label>
+        <input type="text" id="dealTrader" th:field="*{dealTrader}" >
+        <span class="validationError" 
+        th:if="${#fields.hasErrors('dealTrader')}" 
+        th:errors="*{dealTrader}">Trader Error</span><br>
+        </div>
+        <div class="label-input">
+        <label for="dealCommission">Комиссия торговой площадки:</label>
+        <input type="text" id="dealCommission" th:field="*{dealCommission}">
+        <span class="validationError" 
+        th:if="${#fields.hasErrors('dealCommission')}" 
+        th:errors="*{dealCommission}">Commission Error</span><br>
+        </div>
+        
+        </div>
+        <div class="button-container">
+            <button type="submit" class="button">Отправить</button>
+            <a href="/deal/all" class="button">Просмотреть все сделки</a>
+        </div>
+
+    </form>
+</body>
+</html>

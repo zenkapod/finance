@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Deals</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+    <h1>Все сделки</h1>
+    <table>
+        <thead>
+            <tr>
+            <th>№</th>
+            <th>Тип</th>
+                <th>Тикер</th>
+                <th>Номер поручения</th>
+                <th>Номер сделки</th>
+                <th>Количество ценных бумаг</th>
+                <th>Цена</th>
+                <th>Общая сумма сделки</th>
+                <th>Код трейдера</th>
+                <th>Комиссия торговой площадки</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Здесь будет вывод всех сделок -->
+            <tr th:each="deal : ${allDeals}">
+            <td th:text="${deal.id}"></td>
+                <td>
+        <!-- Выводим тип сделки -->
+        <span th:each="type : ${allDealTypes}" th:if="${type.id == deal.typeId}" th:text="${type.type}"></span>
+    </td>
+                <td th:text="${deal.ticker}"></td>
+                <td th:text="${deal.orderNumber}"></td>
+                <td th:text="${deal.dealNumber}"></td>
+                <td th:text="${deal.dealQuantity}"></td>
+                <td th:text="${deal.dealPrice}"></td>
+                <td th:text="${deal.dealTotalCost}"></td>
+                <td th:text="${deal.dealTrader}"></td>
+                <td th:text="${deal.dealCommission}"></td>
+                <td>
+                    <a th:href="@{'/deal/edit/' + ${deal.id}}">Редактировать</a>
+                    <a th:href="@{'/deal/delete/' + ${deal.id}}">Удалить</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="button-container">
+    <a href="/deal/create" class='button'>Добавить сделку</a>
+    <a href="/" class='button'>На главную</a>
+    </div>
+</body>
+</html>

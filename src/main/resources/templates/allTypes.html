@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Deal Types</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<h1>Список всех типов сделок</h1>
+<!-- Проверка наличия ошибки и вывод сообщения -->
+<div th:if="${error}" class="error-message" th:text="${error}">Error Message</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dealType : ${dealTypes}">
+        <td th:text="${dealType.id}"></td>
+        <td th:text="${dealType.type}"></td>
+        <td>
+            <a th:href="@{'/editType/' + ${dealType.id}}">Редактировать</a>
+            <a th:href="@{'/deleteType/' + ${dealType.id}}">Удалить</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="button-container">
+<a href="/addType" class='button'>Добавить новый тип сделки</a>
+<a href="/" class='button'>Главная</a>
+</div>
+</body>
+</html>
+

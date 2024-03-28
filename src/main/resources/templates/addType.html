@@ -1,0 +1,27 @@
+<!-- addType.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Deal Type</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<h1>Добавьте новый тип сделки</h1>
+
+<form method="post" th:action="@{/addType}" th:object="${dealType}">
+<div class="label-input">
+    <label for="type">Название:</label>
+    <input type="text" id="type" th:field="*{type}" />
+    <span class="validationError" 
+        th:if="${#fields.hasErrors('type')}" 
+        th:errors="*{type}">Type Error</span><br>
+        </div>
+        <div class="button-container">
+    <button type="submit" class='button'>Добавить</button>
+    </div>
+</form>
+
+</body>
+</html>
+

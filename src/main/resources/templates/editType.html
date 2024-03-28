@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Deal Type</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<h1>Редактировать тип сделки</h1>
+
+<form method="post" th:action="@{/editType/{id}(id=${dealType.id})}" th:object="${dealType}">
+    <input type="hidden" th:field="*{id}" />
+    <div class="label-input">
+    <label for="type">Название:</label>
+    <input type="text" id="type" th:field="*{type}" />
+    <span class="validationError" 
+        th:if="${#fields.hasErrors('type')}" 
+        th:errors="*{type}">Type Error</span><br>
+        </div>
+        
+        <div class="button-container">
+    <button type="submit" class='button'>Сохранить</button>
+    <a href="/allTypes" class='button'>Назад к списку всех типов</a>
+    </div>
+</form>
+
+</body>
+</html>

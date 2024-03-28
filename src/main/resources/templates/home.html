@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Информационная подсистема учета сделок с ценными бумагами</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<h1>Добро пожаловать...</h1>
+<img th:src="@{/images/demospring.png}"/>
+
+<!-- Проверяем, аутентифицирован ли пользователь -->
+<li sec:authorize="isAuthenticated()">
+    <a href="javascript: document.logoutForm.submit()" class="main-button">Выйти</a>
+    <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+        <input hidden type="submit" value="Sign Out" />
+    </form>
+</li>
+
+<!-- Проверяем, не аутентифицирован ли пользователь -->
+<li sec:authorize="!isAuthenticated()">
+    <a href="/login" class="main-button">Войти</a>
+</li>
+
+<a href="/allTypes" class="main-button">Типы сделок</a>
+<a href="/deal/all" class="main-button">Сделки</a>
+
+<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+</body>
+</html>
+
+
+
+
+
