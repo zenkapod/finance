@@ -2,8 +2,8 @@ package fin.data;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import fin.Deals;
+import fin.DealType;
 
 @Repository
-public interface DealsRepository extends CrudRepository<Deals, Long> {
+public interface DealTypeRepository extends CrudRepository<DealType, Long> {
 }

@@ -1,6 +1,6 @@
-package stores.data;
+package fin.data;
 import org.springframework.data.repository.CrudRepository;
-import stores.TacoOrder;
+import fin.TacoOrder;
 public interface OrderRepository extends CrudRepository<TacoOrder, Long> {
 }
 

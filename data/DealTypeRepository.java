@@ -1,7 +1,7 @@
-package stores.data;
+package fin.data;
 
 import org.springframework.data.repository.CrudRepository;
-import stores.DealType;
+import fin.DealType;
 
 public interface DealTypeRepository extends CrudRepository<DealType, Long> {
 }
