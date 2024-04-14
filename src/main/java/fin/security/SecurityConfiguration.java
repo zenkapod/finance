@@ -22,8 +22,8 @@ public class SecurityConfiguration {
    @Bean
    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
       http.authorizeHttpRequests(authorize -> authorize
-                      .requestMatchers("/login", "/registration", "/", "/styles.css", "/style.css", "/images/**", "/registration/admin").permitAll()
-                      .requestMatchers("/type/add", "/type/edit/**", "/type/delete/**", "/place/add", "/place/edit/**", "/place/delete/**", "/currency/add", "/currency/edit/**", "/currency/delete/**").hasRole("ADMIN")
+                      .requestMatchers("/login", "/registration", "/", "/styles.css", "/style.css", "/images/**", "/registration/admin", "/tiker/all", "/bond/all", "/finAsset/all", "/security/all").permitAll()
+                      .requestMatchers("/tiker/edit/**", "/tiker/delete/**", "/tiker/create/**" ).hasRole("ADMIN")
                       .anyRequest().authenticated()
               )
               .formLogin((form) -> form

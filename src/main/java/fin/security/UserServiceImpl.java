@@ -1,14 +1,13 @@
 package fin.security;
 
 
+import fin.data.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import fin.data.*;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -26,34 +25,18 @@ public class UserServiceImpl implements UserService {
       this.passwordEncoder = passwordEncoder;
    }
 
-   @Override
-   public User save(UserRegistrationDto registrationDto) {
-      var user = new User(
-              registrationDto.getUserName(),
-                 registrationDto.getFullName(),
-                  registrationDto.getStreet(),
-                   registrationDto.getCity(),
-                   registrationDto.getZip(),
-                   registrationDto.getPhoneNumber(),
-                   passwordEncoder.encode(registrationDto
-                          .getPassword()),
-                   Arrays.asList(new Role("ROLE_USER")));
-
-      return userRepository.save(user);
-   }
-
     @Override
-    public User saveAdmin(AdminRegistrationDto adminDto) {
-        User admin = new User(
-                adminDto.getUserName(),
-                adminDto.getFullName(),
-                adminDto.getStreet(),
-                adminDto.getCity(),
-                adminDto.getZip(),
-                adminDto.getPhoneNumber(),
-                passwordEncoder.encode(adminDto.getPassword()),
-                Arrays.asList(new Role("ROLE_ADMIN")));
-        return userRepository.save(admin);
+    public User save(UserRegistrationDto registrationDto) {
+        Role role = new Role(registrationDto.getRole());
+        var user = new User(
+                registrationDto.getUserName(),
+                registrationDto.getFullName(),
+                registrationDto.getCity(),
+                registrationDto.getPhoneNumber(),
+                passwordEncoder.encode(registrationDto.getPassword()),
+                Arrays.asList(role));
+
+        return userRepository.save(user);
     }
 
 

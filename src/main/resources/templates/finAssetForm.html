@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create FinAsset</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="/">Главная</a>
+        <div class="header-buttons">
+            <a href="/bond/all">Облигации</a>
+            <a href="/security/all">Акции</a>
+            <a href="/finAsset/all">Финансовые инструменты</a>
+            <a href="/tiker/all">Тикеры ценных бумаг</a>
+        </div>
+    </div>
+
+    <div class="main-content-twofin">
+        <h2 class="title-three">Создать финансовый инструмент</h2>
+        <form th:action="@{/finAsset/create}" th:object="${finAsset}" method="post" class="form-fin">
+            <div class="form-groupfin">
+                <label for="tikerId">Тикер:</label>
+                <select id="tikerId" th:field="*{tikerId}" class="input-fieldfin">
+                    <option th:each="tiker : ${tikers}" th:value="${tiker.id}" th:text="${tiker.nameTiker}"></option>
+                </select>
+            </div>
+            <div class="form-groupfin">
+                <label for="registration">Регистрация:</label>
+                <input type="text" id="registration" th:field="*{registration}" class="input-fieldfin">
+                <span class="validationError" th:if="${#fields.hasErrors('registration')}" th:errors="*{registration}">Ошибка в регистрации</span><br>
+            </div>
+            <div class="form-groupfin">
+                <label for="dataRegistration">Дата регистрации:</label>
+                <input type="date" id="dataRegistration" th:field="*{dataRegistration}" class="input-fieldfin">
+                <span class="validationError" th:if="${#fields.hasErrors('dataRegistration')}" th:errors="*{dataRegistration}">Ошибка в дате регистрации</span><br>
+            </div>
+            <div class="form-groupfin">
+                <label for="emitent">Эмитент:</label>
+                <input type="text" id="emitent" th:field="*{emitent}" class="input-fieldfin">
+                <span class="validationError" th:if="${#fields.hasErrors('emitent')}" th:errors="*{emitent}">Ошибка в эмитенте</span><br>
+            </div>
+            <div class="form-groupfin">
+                <label for="formIssue">Форма выпуска:</label>
+                <input type="text" id="formIssue" th:field="*{formIssue}" class="input-fieldfin">
+                <span class="validationError" th:if="${#fields.hasErrors('formIssue')}" th:errors="*{formIssue}">Ошибка в форме выпуска</span><br>
+            </div>
+            <div class="form-groupfin">
+                <label for="principal">Основной долг:</label>
+                <input type="text" id="principal" th:field="*{principal}" class="input-fieldfin">
+                <span class="validationError" th:if="${#fields.hasErrors('principal')}" th:errors="*{principal}">Ошибка в основном долге</span><br>
+            </div>
+            <div class="form-groupfin">
+                <label for="amount">Сумма:</label>
+                <input type="text" id="amount" th:field="*{amount}" class="input-fieldfin">
+                <span class="validationError" th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}">Ошибка в сумме</span><br>
+            </div>
+            <div class="form-groupfin">
+                <button type="submit" class="submit-button">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+
+

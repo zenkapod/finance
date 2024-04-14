@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Tiker</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="/">Главная</a>
+        <div class="header-buttons">
+            <a href="/bond/all">Облигации</a>
+            <a href="/security/all">Акции</a>
+            <a href="/finAsset/all">Финансовые инструменты</a>
+            <a href="/tiker/all">Тикеры ценных бумаг</a>
+        </div>
+    </div>
+
+    <div class="main-content-two">
+        <h2 class="title-two">Редактировать тикер</h2>
+        <form th:action="@{/tiker/update/{id}(id=${tiker.id})}" th:object="${tiker}" method="post" class="form">
+            <div class="form-group">
+                <label for="nameTiker">Название тикера:</label>
+                <input type="text" id="nameTiker" th:field="*{nameTiker}" class="input-field">
+                <span class="error-message" th:if="${#fields.hasErrors('nameTiker')}" th:errors="*{nameTiker}">Ошибка в названии тикера</span><br>
+            </div>
+            <div class="form-group">
+                <label for="dealPlace">Торговая площадка:</label>
+                <input type="text" id="dealPlace" th:field="*{dealPlace}" class="input-field">
+                <span class="error-message" th:if="${#fields.hasErrors('dealPlace')}" th:errors="*{dealPlace}">Ошибка в торговой площадке</span><br>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="submit-button">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

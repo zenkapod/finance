@@ -1,9 +1,10 @@
 package fin.data;
-
+import fin.Bond;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import fin.Deals;
 
 @Repository
-public interface DealsRepository extends CrudRepository<Deals, Long> {
+public interface BondRepository extends CrudRepository<Bond, Long> {
+    boolean existsByFinAssetId(Long id);
 }
+

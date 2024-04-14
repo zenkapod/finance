@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Bond</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="/">Главная</a>
+        <div class="header-buttons">
+            <a href="/bond/all">Облигации</a>
+            <a href="/security/all">Акции</a>
+            <a href="/finAsset/all">Финансовые инструменты</a>
+            <a href="/tiker/all">Тикеры ценных бумаг</a>
+        </div>
+    </div>
+
+    <div class="main-content-two">
+        <h2 class="title-two">Создать облигацию</h2>
+        <form action="#" th:action="@{/bond/create}" th:object="${bond}" method="post" class="form">
+            <div class="form-group">
+                <label for="finAssetId">Фин инструмент ID:</label>
+                <select id="finAssetId" name="finAssetId" class="input-field">
+                    <option th:each="finAsset : ${finAssets}"
+                            th:value="${finAsset.id}"
+                            th:text="${finAsset.id}"
+                            th:selected="${finAsset.id == bond.finAssetId}">FinAsset ID</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dataRepayment">Дата погашения купона:</label>
+                <input type="date" id="dataRepayment" name="dataRepayment" th:field="*{dataRepayment}" class="input-field">
+                <span th:if="${#fields.hasErrors('dataRepayment')}" th:errors="*{dataRepayment}" class="error-message">Invalid date</span>
+            </div>
+            <div class="form-group">
+                <label for="couponsAmount">Кол-во купонов:</label>
+                <input type="number" id="couponsAmount" name="couponsAmount" th:field="*{couponsAmount}" class="input-field">
+                <span th:if="${#fields.hasErrors('couponsAmount')}" th:errors="*{couponsAmount}" class="error-message">Invalid amount</span>
+            </div>
+            <div class="form-group">
+                <label for="couponsRate">Размер купона:</label>
+                <input type="number" id="couponsRate" name="couponsRate" th:field="*{couponsRate}" class="input-field">
+                <span th:if="${#fields.hasErrors('couponsRate')}" th:errors="*{couponsRate}" class="error-message">Invalid rate</span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="submit-button">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Security</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="/">Главная</a>
+        <div class="header-buttons">
+            <a href="/bond/all">Облигации</a>
+            <a href="/security/all">Акции</a>
+            <a href="/finAsset/all">Финансовые инструменты</a>
+            <a href="/tiker/all">Тикеры ценных бумаг</a>
+        </div>
+    </div>
+
+    <div class="main-content-two">
+        <h2 class="title-two">Редактировать акцию</h2>
+        <form th:action="@{/security/update/{id}(id=${security.id})}" th:object="${security}" method="post" class="form">
+            <div class="form-group">
+                <label for="finAssetId">Фин инструмент ID:</label>
+                <select id="finAssetId" th:field="*{finAssetId}" class="input-field">
+                    <option th:each="finAsset : ${finAssets}" th:value="${finAsset.id}" th:text="${finAsset.id}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dateAccommodation">Дата размещения:</label>
+                <input type="date" id="dateAccommodation" th:field="*{dateAccommodation}" class="input-field">
+                <span class="validationError" th:if="${#fields.hasErrors('dateAccommodation')}" th:errors="*{dateAccommodation}">Ошибка в дате размещения</span><br>
+            </div>
+            <div class="form-group">
+                <label for="dateReport">Дата отчета:</label>
+                <input type="date" id="dateReport" th:field="*{dateReport}" class="input-field">
+                <span class="validationError" th:if="${#fields.hasErrors('dateReport')}" th:errors="*{dateReport}">Ошибка в дате отчета</span><br>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="submit-button">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

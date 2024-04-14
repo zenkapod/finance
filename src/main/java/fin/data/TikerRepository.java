@@ -1,9 +1,10 @@
 package fin.data;
-
+import fin.Tiker;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import fin.DealPlace;
 
 @Repository
-public interface DealPlaceRepository extends CrudRepository<DealPlace, Long> {
+public interface TikerRepository extends CrudRepository<Tiker, Long> {
+
 }
+

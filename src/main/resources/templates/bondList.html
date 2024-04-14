@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>All Bonds</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="/">Главная</a>
+        <div class="header-buttons">
+            <a href="/bond/all">Облигации</a>
+            <a href="/security/all">Акции</a>
+            <a href="/finAsset/all">Финансовые инструменты</a>
+            <a href="/tiker/all">Тикеры ценных бумаг</a>
+        </div>
+    </div>
+
+    <div class="main-content-two">
+        <h2 class="title-two">Облигации</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Фин инструмент ID</th>
+                <th>Дата погашения купона</th>
+                <th>Кол-во купонов</th>
+                <th>Размер купона</th>
+                <th>Действия</th>
+            </tr>
+            <tr th:each="bond : ${bonds}">
+                <td th:text="${bond.id}"></td>
+                <td th:text="${bond.finAssetId}"></td>
+                <td th:text="${bond.dataRepayment}"></td>
+                <td th:text="${bond.couponsAmount}"></td>
+                <td th:text="${bond.couponsRate}"></td>
+                <td>
+                    <a th:href="@{/bond/edit/{id}(id=${bond.id})}" class="edit-button">Редактировать</a>
+                    <a th:href="@{/bond/delete/{id}(id=${bond.id})}" class="delete-button">Удалить</a>
+                </td>
+            </tr>
+        </table>
+        <p><a th:href="@{/bond/create}" class="add-button">Добавить</a></p>
+    </div>
+</div>
+</body>
+</html>
+
+

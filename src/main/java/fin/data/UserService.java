@@ -8,7 +8,5 @@ public interface UserService extends UserDetailsService {
    
    User save(UserRegistrationDto registrationDto);
 
-   User saveAdmin(AdminRegistrationDto registrationDto);
-
    List<User> getAll();
 }

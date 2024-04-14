@@ -21,9 +21,7 @@ public class User {
    @Column(name = "full_name")
    private String fullName;
 
-   private String street;
    private String city;
-   private String zip;
    @Column(name = "phone_Number")
    private String phoneNumber;
    private String password;
@@ -39,21 +37,17 @@ public class User {
    private Collection<Role> roles;
 
    public User() {
-
    }
 
    public User(String userName, String fullName,
-         String street, String city, String zip, String phoneNumber, String password,
+          String city, String phoneNumber, String password,
                    Collection<Role> roles) {
 
       this.userName = userName;
       this.fullName = fullName;
-      this.street = street;
       this.city = city;
-      this.zip = zip;
       this.phoneNumber = phoneNumber;
       this.password = password;
       this.roles = roles;
    }
-
 }

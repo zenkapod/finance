@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Tikers</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="/">Главная</a>
+        <div class="header-buttons">
+            <a href="/bond/all">Облигации</a>
+            <a href="/security/all">Акции</a>
+            <a href="/finAsset/all">Финансовые инструменты</a>
+            <a href="/tiker/all">Тикеры ценных бумаг</a>
+        </div>
+    </div>
+
+    <div class="main-content-two">
+        <h2 class="title-two">Тикеры</h2>
+        <div th:if="${error}" class="error-message" th:text="${error}"></div>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Наименование</th>
+                <th>Торговая площадка </th>
+                <th>Действия</th>
+            </tr>
+            <tr th:each="tiker : ${tikers}">
+                <td th:text="${tiker.id}"></td>
+                <td th:text="${tiker.nameTiker}"></td>
+                <td th:text="${tiker.dealPlace}"></td>
+                <td>
+                    <a th:href="@{/tiker/edit/{id}(id=${tiker.id})}" class="edit-button">Редактировать</a>
+                    <a th:href="@{/tiker/delete/{id}(id=${tiker.id})}" class="delete-button">Удалить</a>
+                </td>
+            </tr>
+        </table>
+        <p><a th:href="@{/tiker/create}" class="add-button">Добавить</a></p>
+    </div>
+</div>
+</body>
+</html>
+

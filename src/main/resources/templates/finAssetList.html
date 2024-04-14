@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All FinAssets</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="/">Главная</a>
+        <div class="header-buttons">
+            <a href="/bond/all">Облигации</a>
+            <a href="/security/all">Акции</a>
+            <a href="/finAsset/all">Финансовые инструменты</a>
+            <a href="/tiker/all">Тикеры ценных бумаг</a>
+        </div>
+    </div>
+
+    <div class="main-content-two">
+        <h2 class="title-two">Финансовые инструменты</h2>
+        <div th:if="${error}" class="error-message" th:text="${error}"></div>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Тикер</th>
+                <th>Орган регистрации</th>
+                <th>Дата регистрации ценной бумаги</th>
+                <th>Эмитент</th>
+                <th>Форма выпуска</th>
+                <th>Номинал</th>
+                <th>Количество ЦБ в выпуске</th>
+                <th>Действия</th>
+            </tr>
+            <tr th:each="finAsset : ${finAssets}">
+                <td th:text="${finAsset.id}"></td>
+                <td>
+                    <span th:each="tiker : ${tikers}" th:if="${tiker.id == finAsset.tikerId}" th:text="${tiker.nameTiker}"></span>
+                </td>
+                <td th:text="${finAsset.registration}"></td>
+                <td th:text="${finAsset.dataRegistration}"></td>
+                <td th:text="${finAsset.emitent}"></td>
+                <td th:text="${finAsset.formIssue}"></td>
+                <td th:text="${finAsset.principal}"></td>
+                <td th:text="${finAsset.amount}"></td>
+                <td>
+                    <a th:href="@{/finAsset/edit/{id}(id=${finAsset.id})}" class="edit-button">Редактировать</a>
+                    <a th:href="@{/finAsset/delete/{id}(id=${finAsset.id})}" class="delete-button">Удалить</a>
+                </td>
+            </tr>
+        </table>
+        <p><a th:href="@{/finAsset/create}" class="add-button">Добавить</a></p>
+    </div>
+</div>
+</body>
+</html>
+

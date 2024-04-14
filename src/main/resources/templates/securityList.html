@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Securities</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="/">Главная</a>
+        <div class="header-buttons">
+            <a href="/bond/all">Облигации</a>
+            <a href="/security/all">Акции</a>
+            <a href="/finAsset/all">Финансовые инструменты</a>
+            <a href="/tiker/all">Тикеры ценных бумаг</a>
+        </div>
+    </div>
+
+    <div class="main-content-two">
+        <h2 class="title-two">Акции</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Фин инструмент ID</th>
+                <th>Дата размещения</th>
+                <th>Дата регистрации отчета о размещении</th>
+                <th>Действия</th>
+            </tr>
+            <tr th:each="security : ${securities}">
+                <td th:text="${security.id}"></td>
+                <td th:text="${security.finAssetId}"></td>
+                <td th:text="${security.dateAccommodation}"></td>
+                <td th:text="${security.dateReport}"></td>
+                <td>
+                    <a th:href="@{/security/edit/{id}(id=${security.id})}" class="edit-button">Редактировать</a>
+                    <a th:href="@{/security/delete/{id}(id=${security.id})}" class="delete-button">Удалить</a>
+                </td>
+            </tr>
+        </table>
+        <p><a th:href="@{/security/create}" class="add-button">Добавить</a></p>
+    </div>
+</div>
+</body>
+</html>
+
